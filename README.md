@@ -2,4 +2,4 @@
 
 An iOS todo list demo using MVC.
 
-![app screenshot](./screenshot.png "App screenshot")
+![app screenshot](./image.png "App screenshot")
