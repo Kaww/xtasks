@@ -1,5 +1,5 @@
 # XTasks
 
-An iOS todo list demo using protocol MVC with programmatic SoftUI design
+An iOS todo list demo using MVC.
 
 ![app screenshot](./screenshot.png "App screenshot")
