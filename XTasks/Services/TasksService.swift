@@ -65,7 +65,7 @@ extension TasksService {
         }
     }
     
-    func get(by uuid: String) -> TaskEntity? {
+    func get(uuid: String) -> TaskEntity? {
         print("get task by uuid - \(uuid)")
         let taskRequest: NSFetchRequest<TaskEntity> = TaskEntity.fetchRequest()
         taskRequest.predicate = NSPredicate(format: "taskIdentifier == %@", uuid)
