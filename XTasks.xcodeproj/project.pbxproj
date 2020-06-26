@@ -33,6 +33,8 @@
 		59A19EE22466A003005544E4 /* UIView+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A19EE12466A003005544E4 /* UIView+UI.swift */; };
 		59A19EE42466FD35005544E4 /* TasksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A19EE32466FD35005544E4 /* TasksHeader.swift */; };
 		59A19EE624670772005544E4 /* StretchyHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A19EE524670772005544E4 /* StretchyHeaderLayout.swift */; };
+		59C54D3224A5DEC1004E37A3 /* TaskModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D3024A5DEC1004E37A3 /* TaskModel.xcdatamodeld */; };
+		59C54D3424A5E1CE004E37A3 /* TasksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D3324A5E1CE004E37A3 /* TasksService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		59A19EE12466A003005544E4 /* UIView+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+UI.swift"; sourceTree = "<group>"; };
 		59A19EE32466FD35005544E4 /* TasksHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksHeader.swift; sourceTree = "<group>"; };
 		59A19EE524670772005544E4 /* StretchyHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderLayout.swift; sourceTree = "<group>"; };
+		59C54D3124A5DEC1004E37A3 /* TaskModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TaskModel.xcdatamodel; sourceTree = "<group>"; };
+		59C54D3324A5E1CE004E37A3 /* TasksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				590A3FEA24644CAB002217AD /* Services */,
 				5925CBBF246665E80083CBF5 /* Custom */,
 				590A3FD024631964002217AD /* Supporting Files */,
+				59C54D3024A5DEC1004E37A3 /* TaskModel.xcdatamodeld */,
 			);
 			path = XTasks;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				590A3FEB24644CBE002217AD /* DefaultsService.swift */,
+				59C54D3324A5E1CE004E37A3 /* TasksService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54D3224A5DEC1004E37A3 /* TaskModel.xcdatamodeld in Sources */,
 				5925CBBD2465A0210083CBF5 /* NewTaskContract.swift in Sources */,
 				590A3FDE2463B8D0002217AD /* Task.swift in Sources */,
 				590A3FEC24644CBF002217AD /* DefaultsService.swift in Sources */,
@@ -382,6 +389,7 @@
 				09D005762293F1BB00477097 /* AppDelegate.swift in Sources */,
 				590A3FE62463E9CA002217AD /* TaskCell.swift in Sources */,
 				5925CBB0246540860083CBF5 /* TasksUpdaterDelegate.swift in Sources */,
+				59C54D3424A5E1CE004E37A3 /* TasksService.swift in Sources */,
 				5925CBC3246673D20083CBF5 /* UITextFieldPadding.swift in Sources */,
 				59A19EE22466A003005544E4 /* UIView+UI.swift in Sources */,
 				5925CBA5246515F10083CBF5 /* TaskDetailViewController.swift in Sources */,
@@ -590,6 +598,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		59C54D3024A5DEC1004E37A3 /* TaskModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				59C54D3124A5DEC1004E37A3 /* TaskModel.xcdatamodel */,
+			);
+			currentVersion = 59C54D3124A5DEC1004E37A3 /* TaskModel.xcdatamodel */;
+			path = TaskModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 09D0056A2293F1BB00477097 /* Project object */;
 }
