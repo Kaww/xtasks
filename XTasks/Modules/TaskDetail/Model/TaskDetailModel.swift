@@ -14,6 +14,7 @@ class TaskDetailModel {
     
     var taskUUID: String?
     
+    
     private var task: Task?
 }
 
