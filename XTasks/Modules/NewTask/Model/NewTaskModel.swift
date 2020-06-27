@@ -12,7 +12,7 @@ import Foundation
 class NewTaskModel {
     var newTaskController: NewTaskModelOutput?
     
-    private var service = TasksService.shared
+    private let service = TasksService.shared
     
 }
 

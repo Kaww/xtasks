@@ -11,33 +11,28 @@ import Foundation
 
 class TaskDetailModel {
     var taskDetailController: TaskDetailModelOutput?
+    var uuid: String!
     
-    var taskUUID: String?
+    private let service = TasksService.shared
     
-    
-    private var task: Task?
 }
 
 
 // MARK: - Controller Input
 extension TaskDetailModel: TaskDetailControllerInput {
 
-    func retrieveTaskDetail() {
-        self.task = Defaults.getTask(uuid: taskUUID!)
-        taskDetailController?.onTaskRetrieval(task: self.task)
+    func retrieveTask() {
+        taskDetailController?.onTaskRetrieval(task: service.get(uuid: uuid))
     }
     
-    func checkTask(done: Bool) {
-        self.task!.done = !self.task!.done
-        self.task = Defaults.update(self.task!)
-        taskDetailController?.onTaskUpdated(task: self.task!)
-    }
-    
-    func deleteTask() {
-        if let task = self.task {
-            let success = Defaults.delete(task.identifier)
-            taskDetailController?.onTaskDeleted(success)
+    func updateTask(_ task: TaskEntity) {
+        if service.update(task) {
+            taskDetailController?.onTaskUpdated(task: service.get(uuid: task.taskIdentifier!))
         }
+    }
+    
+    func deleteTask(_ task: TaskEntity) {
+        taskDetailController?.onTaskDeleted(success: service.delete(task: task))
     }
     
 }

@@ -31,15 +31,15 @@ class TaskDetailViewController: UIViewController {
 extension TaskDetailViewController: TaskDetailViewInput {
     
     func onViewLayout() {
-        taskDetailModel?.retrieveTaskDetail()
+        taskDetailModel?.retrieveTask()
     }
     
-    func onTaskChecked(done: Bool) {
-        taskDetailModel?.checkTask(done: done)
+    func onUpdateTask(_ task: TaskEntity) {
+        taskDetailModel?.updateTask(task)
     }
     
-    func onDeleteTask() {
-        taskDetailModel?.deleteTask()
+    func onDeleteTask(_ task: TaskEntity) {
+        taskDetailModel?.deleteTask(task)
     }
     
 }
@@ -48,7 +48,7 @@ extension TaskDetailViewController: TaskDetailViewInput {
 // MARK: - Model Output
 extension TaskDetailViewController: TaskDetailModelOutput {
     
-    func onTaskRetrieval(task: Task?) {
+    func onTaskRetrieval(task: TaskEntity?) {
         guard let task = task else {
             navigationController?.popViewController(animated: true)
             return
@@ -56,7 +56,7 @@ extension TaskDetailViewController: TaskDetailModelOutput {
         taskDetailView?.onTaskRetrieval(task: task)
     }
     
-    func onTaskUpdated(task: Task?) {
+    func onTaskUpdated(task: TaskEntity?) {
         guard let task = task else {
             navigationController?.popViewController(animated: true)
             return
@@ -65,7 +65,7 @@ extension TaskDetailViewController: TaskDetailModelOutput {
         taskDetailView?.onTaskRetrieval(task: task)
     }
     
-    func onTaskDeleted(_ didSuccess: Bool) {
+    func onTaskDeleted(success didSuccess: Bool) {
         if didSuccess {
             navigationController?.popViewController(animated: true)
         }

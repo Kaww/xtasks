@@ -77,7 +77,7 @@ extension TasksViewController: TasksModelOutput {
         controller.taskDetailModel = model
         controller.taskDetailModel?.taskDetailController = controller
         
-//        model. = uuid
+        model.uuid = task.taskIdentifier
         
         self.navigationController?.pushViewController(controller, animated: true)
     }

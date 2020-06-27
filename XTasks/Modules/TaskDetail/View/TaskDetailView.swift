@@ -30,7 +30,7 @@ class TaskDetailView: UIView {
     
     // MARK: - Properties
     var taskDetailController: TaskDetailViewInput?
-    var task: Task? {
+    var task: TaskEntity? {
         didSet {
             updateView()
         }
@@ -91,29 +91,28 @@ class TaskDetailView: UIView {
     
     // MARK: - Actions
     @objc private func checkButtonTapped() {
-        if let check = task?.done {
-            taskDetailController?.onTaskChecked(done: check)
-        }
+        self.task?.taskDone.toggle()
+        self.taskDetailController?.onUpdateTask(self.task!)
     }
     
     @objc private func deleteButtonTapped() {
-        taskDetailController?.onDeleteTask()
+        taskDetailController?.onDeleteTask(self.task!)
     }
     
     private func updateView() {
         guard let task = self.task else { return }
         
-        let color: UIColor = task.done ? Colors.appPositiveColor : Colors.appNegativeColor
+        let color: UIColor = task.taskDone ? Colors.appPositiveColor : Colors.appNegativeColor
         
         let vc = taskDetailController as! TaskDetailViewController
-        vc.title = task.done ? "Task ✓" : "Task ✗"
+        vc.title = task.taskDone ? "Task ✓" : "Task ✗"
         vc.navigationController?.navigationBar.tintColor = color
         self.backgroundColor = Colors.appTintColor
         
-        titleLabel.text = task.title
-        descriptionLabel.text = task.description
+        titleLabel.text = task.taskTitle
+        descriptionLabel.text = task.taskDescription
         checkButton.backgroundColor = color
-        checkButton.setTitle(task.done ? "Mark as not done" : "Mark as done", for: .normal)
+        checkButton.setTitle(task.taskDone ? "Mark as not done" : "Mark as done", for: .normal)
     }
 }
 
@@ -121,7 +120,7 @@ class TaskDetailView: UIView {
 // MARK: - Controller Output
 extension TaskDetailView: TaskDetailControllerOutput {
     
-    func onTaskRetrieval(task: Task) {
+    func onTaskRetrieval(task: TaskEntity) {
         self.task = task
     }
     

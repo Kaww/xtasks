@@ -16,9 +16,9 @@ protocol TaskDetailViewInput: class {
     var taskDetailView: TaskDetailControllerOutput? { get set }
     var taskDetailModel: TaskDetailControllerInput? { get set }
     
-    func onViewLayout()
-    func onTaskChecked(done: Bool)
-    func onDeleteTask()
+    func onViewLayout() //
+    func onUpdateTask(_ task: TaskEntity) //
+    func onDeleteTask(_ task: TaskEntity) //
 }
 
 
@@ -28,9 +28,9 @@ protocol TaskDetailViewInput: class {
 protocol TaskDetailControllerInput: class {
     var taskDetailController: TaskDetailModelOutput? { get set }
     
-    func retrieveTaskDetail()
-    func checkTask(done: Bool)
-    func deleteTask()
+    func retrieveTask() //
+    func updateTask(_ task: TaskEntity) //
+    func deleteTask(_ task: TaskEntity) //
 }
 
 
@@ -38,9 +38,9 @@ protocol TaskDetailControllerInput: class {
 ///
 /// **Controller** conforms to this protocol
 protocol TaskDetailModelOutput: class {
-    func onTaskRetrieval(task: Task?)
-    func onTaskUpdated(task: Task?)
-    func onTaskDeleted(_ didSuccess: Bool)
+    func onTaskRetrieval(task: TaskEntity?) //
+    func onTaskUpdated(task: TaskEntity?) //
+    func onTaskDeleted(success didSuccess: Bool)
 }
 
 
@@ -50,6 +50,6 @@ protocol TaskDetailModelOutput: class {
 protocol TaskDetailControllerOutput: class {
     var taskDetailController: TaskDetailViewInput? { get set }
     
-    func onTaskRetrieval(task: Task)
+    func onTaskRetrieval(task: TaskEntity) //
     
 }
