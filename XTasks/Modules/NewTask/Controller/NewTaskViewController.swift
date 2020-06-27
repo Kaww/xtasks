@@ -51,9 +51,11 @@ extension NewTaskViewController: NewTaskViewInput {
 // MARK: - Model Output
 extension NewTaskViewController: NewTaskModelOutput {
     
-    func onTaskCreated(task: Task?) {
-        self.tasksUpdaterDelegate?.refreshTasksList()
-        dismiss(animated: true, completion: nil)
+    func onTaskCreated(success didSuccess: Bool) {
+        if didSuccess {
+            self.tasksUpdaterDelegate?.refreshTasksList()
+            dismiss(animated: true, completion: nil)
+        }
     }
     
 }

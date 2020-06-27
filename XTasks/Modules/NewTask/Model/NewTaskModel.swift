@@ -12,7 +12,7 @@ import Foundation
 class NewTaskModel {
     var newTaskController: NewTaskModelOutput?
     
-    private var task: Task?
+    private var service = TasksService.shared
     
 }
 
@@ -21,8 +21,7 @@ class NewTaskModel {
 extension NewTaskModel: NewTaskControllerInput {
     
     func createTask(task: Task) {
-        self.task = Defaults.create(task)
-        newTaskController?.onTaskCreated(task: self.task)
+        newTaskController?.onTaskCreated(success: service.create(task))
     }
     
 }

@@ -11,6 +11,6 @@ import Foundation
 
 /// Delegate information that a task has been checked
 protocol TaskActionsDelegate {
-    func onTaskActionChecked(uuid: String, done: Bool)
+    func onTaskActionChecked(task: TaskEntity)
     
 }

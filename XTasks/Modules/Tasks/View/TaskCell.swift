@@ -29,12 +29,12 @@ class TaskCell: UICollectionViewCell {
     // MARK: - Properties
     var delegate: TaskActionsDelegate!
     
-    var task: Task! {
+    var task: TaskEntity! {
         didSet {
             self.addGradientWithCornerRadius(startColor: Colors.appTintColor2, endColor: Colors.appTintColor1, radius: 10)
-            checkButton.backgroundColor = self.task.done ? Colors.appPositiveColor : Colors.appNegativeColor
-            checkButton.setTitle(self.task.done ? "✔️" : "", for: .normal)
-            self.titleLabel.text = task.title
+            checkButton.backgroundColor = self.task.taskDone ? Colors.appPositiveColor : Colors.appNegativeColor
+            checkButton.setTitle(self.task.taskDone ? "✔️" : "", for: .normal)
+            self.titleLabel.text = task.taskTitle
         }
     }
     
@@ -43,7 +43,8 @@ class TaskCell: UICollectionViewCell {
     
     // MARK: - Actions
     @objc private func checkButtonTapped() {
-        self.delegate.onTaskActionChecked(uuid: self.task.identifier, done: !self.task.done)
+        self.task.taskDone.toggle()
+        self.delegate.onTaskActionChecked(task: self.task)
     }
     
 }

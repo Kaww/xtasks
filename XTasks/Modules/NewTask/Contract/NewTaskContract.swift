@@ -37,7 +37,7 @@ protocol NewTaskControllerInput: class {
 ///
 /// **Controller** conforms to this protocol
 protocol NewTaskModelOutput: class {
-    func onTaskCreated(task: Task?)
+    func onTaskCreated(success didSuccess: Bool)
     
 }
 

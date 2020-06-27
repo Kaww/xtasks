@@ -48,12 +48,12 @@ extension TasksViewController: TasksViewInput {
         present(controller, animated: true, completion: nil)
     }
     
-    func onTaskChecked(index: Int, done: Bool) {
-        tasksModel?.checkTask(for: index, done: done)
+    func onUpdateTask(_ task: TaskEntity) {
+        tasksModel?.updateTask(task)
     }
     
-    func onCellSelection(index: Int) {
-        tasksModel?.retrieveTaskUUID(for: index)
+    func onTaskSelection(uuid: String) {
+        tasksModel?.retrieveTask(uuid)
     }
     
 }
@@ -62,11 +62,11 @@ extension TasksViewController: TasksViewInput {
 // MARK: - Model Output
 extension TasksViewController: TasksModelOutput {
     
-    func onTasksRetrieval(tasks: [Task]) {
+    func onTasksRetrieval(tasks: [TaskEntity]) {
         tasksView?.onTasksRetrieval(tasks: tasks)
     }
     
-    func onUUIDRetrieval(uuid: String) {
+    func onTaskRetrieval(task: TaskEntity) {
         let controller = TaskDetailViewController()
         let view = TaskDetailView()
         let model = TaskDetailModel()
@@ -77,12 +77,12 @@ extension TasksViewController: TasksModelOutput {
         controller.taskDetailModel = model
         controller.taskDetailModel?.taskDetailController = controller
         
-        model.taskUUID = uuid
+//        model. = uuid
         
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    func onTasksUpdated(tasks: [Task]) {
+    func onTasksUpdated(tasks: [TaskEntity]) {
         tasksView?.onTasksUpdated(tasks: tasks)
     }
 

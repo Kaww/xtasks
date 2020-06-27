@@ -34,7 +34,7 @@ class TasksView: UIView {
     
     // MARK: - Properties
     var tasksController: TasksViewInput?
-    private var tasks = [Task]()
+    private var tasks = [TaskEntity]()
     
     lazy var newTaskButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newTaskButtonTapped))
@@ -105,7 +105,7 @@ class TasksView: UIView {
     private func reloadHeader() {
         var doneCount = 0
         for task in self.tasks {
-            if task.done {
+            if task.taskDone {
                 doneCount += 1
             }
         }
@@ -118,14 +118,14 @@ class TasksView: UIView {
 // MARK: - Controller Output
 extension TasksView: TasksControllerOutput {
     
-    func onTasksRetrieval(tasks: [Task]) {
+    func onTasksRetrieval(tasks: [TaskEntity]) {
         self.tasks = tasks
         placeholder.isHidden = self.tasks.count > 0
         self.collectionView.reloadData()
         reloadHeader()
     }
     
-    func onTasksUpdated(tasks: [Task]) {
+    func onTasksUpdated(tasks: [TaskEntity]) {
         self.tasks = tasks
         placeholder.isHidden = self.tasks.count > 0
         self.collectionView.reloadData()
@@ -155,7 +155,8 @@ extension TasksView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        tasksController?.onCellSelection(index: indexPath.item)
+        let selectedTask = self.tasks[indexPath.item]
+        tasksController?.onTaskSelection(uuid: selectedTask.taskIdentifier!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -181,10 +182,8 @@ extension TasksView: UICollectionViewDelegate, UICollectionViewDelegateFlowLayou
 // MARK: - Tasks Actions Delegate
 extension TasksView: TaskActionsDelegate {
     
-    func onTaskActionChecked(uuid: String, done: Bool) {
-        if let index = tasks.firstIndex(where: { $0.identifier == uuid }) {
-            tasksController?.onTaskChecked(index: index, done: done)
-        }
+    func onTaskActionChecked(task: TaskEntity) {
+        tasksController?.onUpdateTask(task)
     }
     
 }

@@ -18,8 +18,8 @@ protocol TasksViewInput: class {
     
     func onViewLayout()
     func onNewTaskTapped()
-    func onTaskChecked(index: Int, done: Bool)
-    func onCellSelection(index: Int)
+    func onUpdateTask(_ task: TaskEntity)
+    func onTaskSelection(uuid: String)
     
 }
 
@@ -31,8 +31,8 @@ protocol TasksControllerInput: class {
     var tasksController: TasksModelOutput? { get set }
     
     func retrieveTasks()
-    func retrieveTaskUUID(for index: Int)
-    func checkTask(for index: Int, done: Bool)
+    func retrieveTask(_ uuid: String)
+    func updateTask(_ task: TaskEntity)
     
 }
 
@@ -41,9 +41,9 @@ protocol TasksControllerInput: class {
 ///
 /// **Controller** conforms to this protocol
 protocol TasksModelOutput: class {
-    func onTasksRetrieval(tasks: [Task])
-    func onUUIDRetrieval(uuid: String)
-    func onTasksUpdated(tasks: [Task])
+    func onTasksRetrieval(tasks: [TaskEntity])
+    func onTaskRetrieval(task: TaskEntity)
+    func onTasksUpdated(tasks: [TaskEntity])
     
 }
 
@@ -54,7 +54,7 @@ protocol TasksModelOutput: class {
 protocol TasksControllerOutput: class {
     var tasksController: TasksViewInput? { get set }
     
-    func onTasksRetrieval(tasks: [Task])
-    func onTasksUpdated(tasks: [Task])
+    func onTasksRetrieval(tasks: [TaskEntity])
+    func onTasksUpdated(tasks: [TaskEntity])
     
 }

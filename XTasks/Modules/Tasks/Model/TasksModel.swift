@@ -12,7 +12,7 @@ import Foundation
 class TasksModel {
     var tasksController: TasksModelOutput?
     
-    private var tasks = [Task]()
+    private var service = TasksService.shared
     
 }
 
@@ -21,23 +21,20 @@ class TasksModel {
 extension TasksModel: TasksControllerInput {
     
     func retrieveTasks() {
-        self.tasks = Defaults.getTasks()
-        tasksController?.onTasksRetrieval(tasks: self.tasks)
+        let tasks = service.getAll()
+        tasksController?.onTasksRetrieval(tasks: tasks)
     }
     
-    func retrieveTaskUUID(for index: Int) {
-        if self.tasks.count >= index + 1 {
-            let uuid = self.tasks[index].identifier
-            tasksController?.onUUIDRetrieval(uuid: uuid)
+    func retrieveTask(_ uuid: String) {
+        if let task = service.get(uuid: uuid) {
+            tasksController?.onTaskRetrieval(task: task)
         }
     }
     
-    func checkTask(for index: Int, done: Bool) {
-        if self.tasks.count >= index + 1 {
-            self.tasks[index].done = done
-            Defaults.save(self.tasks)
-            
-            tasksController?.onTasksUpdated(tasks: self.tasks)
+    func updateTask(_ task: TaskEntity) {
+        if service.update(task) {
+            let tasks = service.getAll()
+            tasksController?.onTasksUpdated(tasks: tasks)
         }
     }
     

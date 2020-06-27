@@ -30,7 +30,7 @@ class TasksService {
 // MARK: - CREATE Tasks
 extension TasksService {
     
-    func create(task: Task) -> Bool {
+    func create(_ task: Task) -> Bool {
         print("create task - \(task.title)")
         let newTaskEntity = TaskEntity(context: context)
         newTaskEntity.taskTitle = task.title
@@ -85,7 +85,7 @@ extension TasksService {
 // MARK: - UPDATE Tasks
 extension TasksService {
     
-    func update(task: TaskEntity) -> Bool {
+    func update(_ task: TaskEntity) -> Bool {
         print("update task - \(task.taskTitle!)")
         
         do {
